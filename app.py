@@ -5,16 +5,20 @@ import re
 
 app = Flask(__name__)
 
-@app.route('/api/products', methods=['POST'])
+@app.route('/api/products', methods=['POST', 'HEAD'])
 def get_product_details():
-    data = request.get_json()
-    asins = data.get('asins', [])
-    result = {}
+    if request.method == 'POST':
+        data = request.get_json()
+        asins = data.get('asins', [])
+        result = {}
 
-    for asin in asins:
-        result[asin] = crawl_by_id(asin)
+        for asin in asins:
+            result[asin] = crawl_by_id(asin)
 
-    return jsonify(result)
+        return jsonify(result)
+    elif request.method == 'HEAD':
+        # Handle HEAD request (optional)
+        return '', 200
 
 def crawl_by_id(id):
     o = {}
@@ -52,4 +56,3 @@ def crawl_by_id(id):
         o["productDescription"] = None
 
     return o
-
