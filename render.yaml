@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: amazon-scraper
+    name: fastapi-app
     env: python
+    region: oregon
     plan: free
-    build:
-      command: pip install -r requirements.txt
-    start:
-      command: gunicorn app:app --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:10000
+    buildCommand: ""
+    startCommand: gunicorn -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:80
+    autoDeploy: true
