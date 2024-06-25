@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: amazon-scraper
+    env: python
+    plan: free
+    build:
+      command: pip install -r requirements.txt
+    start:
+      command: gunicorn app:app --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:10000
