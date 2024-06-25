@@ -1,4 +1,4 @@
-Flask==3.0.3
-requests==2.32.3
-beautifulsoup4==4.12.3
+fastapi==0.68.2
+uvicorn==0.15.0
+httpx==0.21.1
 gunicorn==20.1.0
