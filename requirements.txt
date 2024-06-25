@@ -2,3 +2,4 @@ fastapi==0.68.2
 uvicorn==0.15.0
 httpx==0.21.1
 gunicorn==20.1.0
+beautifulsoup4==4.12.3
